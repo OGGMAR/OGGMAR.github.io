@@ -1,0 +1,990 @@
+/* ------------------------------------- */
+/* Código CSS Completo (Final con todos los ajustes) */
+/* ------------------------------------- */
+
+/* 📝 Importamos la fuente Poppins al inicio del archivo */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+
+/* ------------------------------------- */
+/* ESTILOS GLOBALES Y BASE (DARK MODE - IMPROVED) */
+/* ------------------------------------- */
+body {
+	font-family: 'Poppins', 'Roboto', sans-serif;
+	margin: 0;
+	padding: 0;
+	background-color: #0b0b0b; /* Negro casi puro - Ultra Dark */
+	color: #f0f0f0; /* Blanco suave para el texto principal */
+	overflow-x: hidden; /* Aseguramos que no haya scroll horizontal en ningún caso */
+}
+
+/* Contenedor principal: Por defecto para escritorio (3 columnas) */
+.content-wrapper {
+	display: grid;
+	grid-template-columns: minmax(180px, 1fr) 4fr minmax(180px, 1fr); 
+	gap: 25px; 
+	max-width: 1100px; 
+	margin: 25px auto; 
+	padding: 0 10px; 
+}
+
+/* Placeholders de contenido */
+.item-placeholder, .featured-box-placeholder, .video-placeholder, .small-banner-placeholder, .promo-box {
+	background-color: #1a1a1a; 
+	border: 1px solid #3d3d3d; 
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); 
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-weight: bold;
+	color: #777; 
+	border-radius: 6px; 
+	overflow: hidden; 
+}
+.item-placeholder img, .featured-box-placeholder img, .small-banner-placeholder img, .video-placeholder img, .promo-box img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+	border-radius: inherit;
+}
+
+
+/* ------------------------------------- */
+/* ANIMACIÓN GENERAL Y OVERLAY (Se mantienen para escritorio) */
+/* ------------------------------------- */
+@keyframes fadeInUp {
+	from { opacity: 0; transform: translateY(20px); }
+	to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeOut {
+	0% { opacity: 1; }
+	80% { opacity: 1; }
+	100% { opacity: 0; }
+}
+
+#welcome-overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: #050505; 
+	color: #00e0ff; 
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 1000;
+	font-size: 4em;
+	font-weight: 800;
+	text-transform: uppercase;
+	animation: fadeOut 2.5s ease-out forwards;
+}
+
+.welcome-text {
+	animation: fadeInUp 1s ease-out; 
+}
+
+
+/* ------------------------------------- */
+/* ENCABEZADO SUPERIOR (Escritorio) */
+/* ------------------------------------- */
+.main-header {
+	background-color: #1c1c1c; 
+	padding: 10px 0;
+	border-bottom: 3px solid #00e0ff; 
+	margin-bottom: 30px; 
+	opacity: 0; /* Animado para escritorio */
+}
+
+.header-top-bar {
+	display: flex;
+	justify-content: center; 
+	align-items: center;
+	gap: 40px;
+	max-width: 1100px; 
+	margin: 0 auto;
+	padding: 0 10px;
+	height: 70px; 
+}
+
+.main-title {
+	color: #ffffff; 
+	font-size: 2.6em; 
+	font-weight: 800; 
+	text-transform: uppercase; 
+	letter-spacing: 3px; 
+	text-shadow: 0 0 5px rgba(0, 224, 255, 0.4); 
+}
+
+.animate-on-load {
+	opacity: 0; 
+	animation: fadeInUp 1s ease-out forwards; 
+	animation-delay: 2.3s;
+}
+
+.search-bar-desktop, .menu-icon-desktop {
+	display: none; 
+}
+
+
+/* ------------------------------------- */
+/* COLUMNAS LATERALES (ASIDES) - SOLO ESCRITORIO */
+/* ------------------------------------- */
+.left-sidebar {
+	grid-area: 1 / 1 / 3 / 2;
+	opacity: 0; /* Animado para escritorio */
+	animation: fadeInUp 1s ease-out forwards; 
+	animation-delay: 2.5s;
+}
+
+.right-sidebar {
+	grid-area: 1 / 3 / 3 / 4;
+	opacity: 0; /* Animado para escritorio */
+	animation: fadeInUp 1s ease-out forwards; 
+	animation-delay: 2.7s;
+}
+
+/* ⭐ TITULO DE BARRA LATERAL (ESCRITORIO Y MOVIL) */
+.sidebar-title {
+	color: #00e0ff; /* CIAN */
+	font-weight: 700; 
+	border-bottom: 3px solid #3a3a3a; 
+	padding-bottom: 10px;
+	margin-top: 30px; 
+	margin-bottom: 20px;
+	font-size: 1.3em;
+	transition: color 0.3s ease-in-out; 
+	opacity: 0; /* Animado para escritorio */
+	animation: fadeInUp 1s ease-out forwards; 
+	animation-delay: 3.0s; 
+}
+
+.sidebar-title:hover {
+	color: #66ffff; 
+	cursor: pointer; 
+}
+
+.article-list {
+	list-style: none;
+	padding: 0;
+}
+
+.article-item {
+	display: flex;
+	gap: 10px;
+	margin-bottom: 12px;
+	padding-bottom: 12px;
+	border-bottom: 1px dotted #444; 
+	transition: all 0.3s ease-in-out; 
+	padding: 5px;
+	opacity: 0; /* Animado para escritorio */
+	animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.article-list .article-item:nth-child(1) { animation-delay: 3.2s; }
+.article-list .article-item:nth-child(2) { animation-delay: 3.4s; }
+.article-list .article-item:nth-child(3) { animation-delay: 3.6s; }
+
+.article-item:hover {
+	box-shadow: 0 6px 12px rgba(0, 0, 0, 0.7); 
+	transform: translateY(-3px); 
+	cursor: pointer;
+	background-color: #252525; 
+	border-radius: 8px; 
+}
+
+.article-item:last-child {
+	border-bottom: none;
+}
+
+.article-item .item-placeholder {
+	width: 53px;
+	height: 53px;
+	flex-shrink: 0;
+	font-size: 12px;
+}
+
+/* ⭐ TITULO DE ARTÍCULO EN LISTA LATERAL (ESCRITORIO Y MOVIL) */
+.article-item h4 {
+	margin: 0;
+	font-size: 1em;
+	color: #00e0ff; /* CIAN */
+	font-weight: 700; 
+	line-height: 1.2;
+}
+
+.article-item p {
+	margin: 3px 0 0 0;
+	font-size: 12px;
+	color: #c5c5c5; 
+	font-weight: 500; 
+}
+
+
+/* ------------------------------------- */
+/* CONTENIDO PRINCIPAL (MAIN) */
+/* ------------------------------------- */
+.main-content-area {
+	grid-area: 1 / 2 / 3 / 3; 
+}
+
+.hero-article {
+	border: 1px solid #3a3a3a; 
+	background-color: #151515; 
+	padding: 30px; 
+	margin-bottom: 30px;
+	border-radius: 8px; 
+	box-shadow: 0 8px 20px rgba(0, 0, 0, 0.8); 
+	position: relative; 
+	opacity: 0; 
+	animation: fadeInUp 1s ease-out forwards; 
+	animation-delay: 2.3s;
+}
+
+.hero-image-container img {
+	width: 100%;
+	height: 250px; 
+	object-fit: cover;
+	border-radius: 6px;
+	margin-bottom: 20px;
+}
+
+/* ⭐ TITULO DE ARTÍCULO HERO (ESCRITORIO) - TAMAÑO REDUCIDO */
+.hero-text-content h2 {
+	margin-top: 0;
+	color: #00e0ff; /* CIAN */
+	font-size: 1.8em; /* Mantenemos el tamaño reducido */
+	border-bottom: 2px solid #555; 
+	padding-bottom: 12px;
+	font-weight: 700;
+}
+
+.article-meta {
+	font-size: 0.9em;
+	color: #aaa; 
+	margin: 5px 0 15px 0;
+	font-style: italic;
+}
+
+.hero-text-content p {
+	font-size: 1em;
+	color: #f0f0f0; 
+	line-height: 1.6;
+}
+
+.button-placeholder {
+	display: inline-block;
+	background-color: #00e0ff; 
+	color: #0b0b0b; 
+	padding: 12px 25px; 
+	margin-top: 15px;
+	font-size: 1em;
+	font-weight: 700;
+	border-radius: 6px;
+	border: none;
+	cursor: pointer;
+	transition: background-color 0.2s, transform 0.2s, box-shadow 0.2s;
+	box-shadow: 0 4px 8px rgba(0, 224, 255, 0.3); 
+}
+
+.button-placeholder:hover {
+	background-color: #00b3d6; 
+	transform: scale(1.02); 
+}
+
+.extra-content {
+	max-height: 0;
+	overflow: hidden;
+	transition: max-height 0.5s ease-in-out; 
+}
+
+.extra-content p, .extra-content li {
+	font-size: 1.05em; 
+	font-weight: 500;
+	font-family: 'Poppins', sans-serif; 
+	margin: 10px 0;
+	color: #cccccc; 
+	line-height: 1.6;
+}
+
+.extra-content.show {
+	max-height: 500px; 
+	margin-top: 15px;
+	padding-top: 15px;
+	border-top: 1px dashed #444; 
+}
+
+.pagination-controls {
+	text-align: center;
+	margin: 30px 0;
+	font-size: 1.1em;
+	color: #999;
+	display: none; 
+}
+
+
+/* ------------------------------------- */
+/* WIDGETS DE LA BARRA LATERAL DERECHA (Escritorio) */
+/* ------------------------------------- */
+.widget {
+	background-color: #151515; 
+	border: 1px solid #3a3a3a;
+	padding: 20px; 
+	margin-bottom: 25px; 
+	border-radius: 8px;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.7); 
+	width: 350px;
+	height: 350px;
+}
+
+.subscribe-widget {
+	font-size: 1.6em; 
+	font-weight: 700;
+	color: #00e0ff; 
+	border: 3px solid #00e0ff; 
+	padding: 10px;
+	transition: background-color 0.3s;
+	display: none; 
+}
+.subscribe-widget:hover {
+	background-color: #2a2a2a; 
+}
+
+.video-widget .video-placeholder {
+	width: 100%;
+	height: 200px; 
+	position: relative; 
+	overflow: hidden;
+}
+
+.video-widget iframe {
+	width: 100%;
+	height: 100%; 
+	display: block; 
+	border: none;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.social-stats-widget {
+	display: none;
+}
+
+
+/* ------------------------------------- */
+/* PIE DE PÁGINA (FOOTER) - Escritorio */
+/* ------------------------------------- */
+footer {
+	width: 100%;
+	background-color: #1c1c1c; 
+	padding: 20px 0;
+	margin-top: 40px;
+}
+
+.footer-line-placeholder {
+	max-width: 1100px; 
+	margin: 0 auto;
+	height: 10px;
+	background-color: #00e0ff; 
+	border-radius: 5px;
+}
+
+/* ------------------------------------- */
+/* ESTILOS DEL CARRUSEL (SLIDER) - ZONA DE ESCRITORIO */
+/* ------------------------------------- */
+.carrusel-contenedor {
+	margin-bottom: 30px;
+	opacity: 0; 
+	animation: fadeInUp 1s ease-out forwards; 
+	animation-delay: 2.5s; 
+}
+
+.carrusel-slides.featured-box-placeholder {
+	width: 100%;
+	height: 450px; 
+	position: relative; 
+	overflow: hidden; 
+	padding: 0; 
+	background-color: #1a1a1a; 
+	border: 1px solid #282828;
+	border-radius: 8px;
+	box-shadow: 0 8px 20px rgba(0, 0, 0, 0.8); 
+}
+
+.carrusel-paginacion {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-bottom: 15px;
+}
+
+.carrusel-paginacion button,
+.carrusel-paginacion .numero-slide {
+	padding: 5px 12px; 
+	margin: 0 4px; 
+	border: 1px solid #555; 
+	background-color: #222; 
+	font-weight: 600;
+	color: #ccc; 
+	border-radius: 4px; 
+	transition: all 0.2s;
+	cursor: pointer; 
+}
+
+.carrusel-paginacion .numero-slide.activo {
+	background-color: #00e0ff; 
+	color: #121212; 
+	border-color: #00e0ff;
+	box-shadow: 0 0 8px rgba(0, 224, 255, 0.5);
+}
+
+/* ⭐ SOLUCIÓN ESCRITORIO: Alineación lateral de imagen y texto, sin superposición */
+.carrusel-slides .slide {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	align-items: center; 
+	justify-content: center; /* Centramos el bloque imagen+texto */
+	padding: 30px; 
+	gap: 30px; /* Separación entre la imagen y el texto */
+	text-align: left; 
+	color: #f0f0f0; 
+	background-color: transparent; 
+	transition: opacity 0.4s ease-in-out; 
+	opacity: 0; 
+	visibility: hidden;
+}
+
+.carrusel-slides .slide h2, 
+.carrusel-slides .slide h3 { 
+	/* El título respeta el flujo de texto (no se superpone) */
+	position: static; 
+	font-size: 1.8em; 
+	color: #00e0ff; 
+	margin-top: 0;
+	margin-bottom: 10px;
+	font-weight: 700;
+	width: 100%; 
+	box-sizing: border-box;
+}
+
+.carrusel-slides .slide-image {
+	width: 190px; 
+	height: 190px; 
+	flex-shrink: 0;
+	border-radius: 6px;
+	border: 2px solid #00e0ff; /* Borde cian para destacar */
+	box-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+	object-fit: cover; 
+}
+
+.carrusel-slides .slide-text1, 
+.carrusel-slides .slide-text2,
+.carrusel-slides .slide-text3,
+.carrusel-slides .slide-text4,
+.carrusel-slides .slide-text {
+	flex-grow: 1; 
+	max-width: 70%; 
+	padding-right: 100px; 
+	font-size: 100%; 
+	text-align: center;
+}
+
+/* ⭐ Subtítulos dentro del carrusel */
+.carrusel-slides .slide-text1 h3, 
+.carrusel-slides .slide-text2 h3,
+.carrusel-slides .slide-text3 h3,
+.carrusel-slides .slide-text4 h3 {
+	font-size: 1.4em; 
+	margin-top: 0;
+	color: #00e0ff; 
+	font-weight: 700;
+}
+
+.carrusel-slides .slide-text1 p, 
+.carrusel-slides .slide-text2 p,
+.carrusel-slides .slide-text3 p,
+.carrusel-slides .slide-text4 p {
+	font-size: 0.95em; 
+	margin: 8px 0;
+	font-weight: 500;
+	line-height: 1.5;
+	word-wrap: break-word; 
+	overflow-wrap: break-word;
+}
+
+.carrusel-slides .slide.actual {
+	opacity: 1; 
+	visibility: visible;
+}
+
+/* ------------------------------------- */
+/* BARRA DE NAVEGACIÓN FIJA MÓVIL */
+/* ------------------------------------- */
+.mobile-navbar {
+	display: none; 
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	background-color: #1c1c1c; 
+	border-top: 2px solid #00e0ff; 
+	padding: 5px 0; 
+	z-index: 999;
+	justify-content: space-around;
+	align-items: center;
+	box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.7); 
+}
+
+.mobile-nav-item {
+	color: #999; 
+	text-align: center;
+	font-size: 0.8em;
+	font-weight: 500;
+	padding: 5px;
+	cursor: pointer;
+	transition: color 0.2s, transform 0.2s;
+}
+
+.mobile-nav-item i {
+	font-size: 1.4em;
+	color: #999; 
+	display: block;
+	margin-bottom: 3px;
+	transition: color 0.2s;
+}
+
+.mobile-nav-item:hover {
+	color: #f0f0f0; 
+	transform: translateY(-2px); 
+}
+.mobile-nav-item:hover i {
+	color: #00e0ff; 
+}
+
+/* Ocultar secciones que no están en el HTML original */
+.promo-section,
+.app-download-section {
+	display: none; 
+}
+
+
+/* ===================================== */
+/* 📱 RESPONSIVE: LAYOUT PARA TELÉFONOS (Hasta 900px, cualquier orientación) */
+/* ===================================== */
+
+@media (max-width: 900px) {
+
+	/* --- BASE Y CONTENEDORES --- */
+	body {
+		padding-bottom: 65px;
+		overflow-x: hidden;
+	}
+
+	.content-wrapper {
+		display: flex; 
+		flex-direction: column; 
+		margin: 0 auto;
+		padding: 0 10px;
+		gap: 15px;
+	}
+	
+	/* --- AJUSTES DE CONTENEDOR EN MÓVIL (Mejora del Carrusel) --- */
+	.content-wrapper {
+		padding: 0 10px; 
+		margin: 15px auto; 
+	}
+
+
+	/* --- MOSTRAR HEADER MÓVIL Y OCULTAR DE ESCRITORIO --- */
+	.main-header,
+	footer {
+		display: none; 
+	}
+
+	/* 1. RE-INTEGRACIÓN DE SIDEBARS Y CARRUSEL */
+	.left-sidebar,
+	.right-sidebar {
+		display: block; 
+		padding: 0;
+		margin-bottom: 20px;
+		width: 100%; 
+		box-sizing: border-box;
+	}
+
+	.carrusel-contenedor,
+	.recent-articles-widget,
+	.video-widget {
+		display: block;
+		margin-bottom: 25px;
+		padding: 0;
+		border: none;
+		background-color: transparent;
+		box-shadow: none;
+		width: 100%; 
+		box-sizing: border-box;
+	}
+	
+	.video-widget {
+		background-color: #1a1a1a;
+		border: 1px solid #282828;
+		border-radius: 8px;
+		box-shadow: 0 2px 5px rgba(0,0,0,0.4);
+		padding: 15px;
+	}
+
+
+	/* --- NAVEGACIÓN MÓVIL --- */
+	.mobile-navbar {
+		display: flex; 
+		height: 60px;
+		border-top: 2px solid #00e0ff;
+		background-color: #0b0b0b;
+		box-shadow: 0 -3px 10px rgba(0,0,0,0.6);
+	}
+	.mobile-nav-item i {
+		font-size: 1.7em;
+		margin-bottom: 2px;
+	}
+	.mobile-nav-item {
+		font-size: 0.7em;
+		font-weight: 500;
+		color: #888;
+		flex: 1; 
+	}
+	.mobile-nav-item.active, .mobile-nav-item:hover {
+		color: #f0f0f0;
+	}
+	.mobile-nav-item.active i, .mobile-nav-item:hover i {
+		color: #00e0ff;
+	}
+
+	/* 2. ESTILOS DEL CONTENIDO PRINCIPAL (Hero Article) */
+	.main-content-area {
+		padding: 0;
+		width: 100%; 
+		box-sizing: border-box;
+	}
+	.hero-article {
+		background-color: #121212;
+		border: 1px solid #1a1a1a;
+		padding: 20px 15px;
+		margin-bottom: 20px;
+		border-radius: 8px;
+		box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+	}
+	.hero-image-container img {
+		height: 180px; 
+		margin-bottom: 15px;
+	}
+
+	/* ⭐ TITULO DE ARTÍCULO HERO EN MÓVIL - TAMAÑO REDUCIDO */
+	.hero-text-content h2 {
+		font-size: 1.4em; 
+		color: #00e0ff; 
+		border-bottom: 1px solid #333; 
+		padding-bottom: 10px;
+		margin-bottom: 10px;
+	}
+	.hero-text-content p {
+		font-size: 0.95em;
+	}
+	
+	.button-placeholder {
+		display: inline-block; 
+		width: 100%;
+		text-align: center;
+		box-sizing: border-box; 
+	}
+	
+	.extra-content {
+		border-top: 1px dashed #444;
+		margin-top: 15px;
+		padding-top: 15px;
+	}
+	.extra-content.show {
+		max-height: 1000px; 
+	}
+	.extra-content ul {
+		list-style: none;
+		padding: 0;
+	}
+	.extra-content li {
+		margin-bottom: 10px;
+		padding-left: 10px;
+		border-left: 3px solid #00e0ff;
+	}
+
+	/* 3. ESTILOS DE LISTAS LATERALES REINTEGRADAS (Tendencias - Artículos) */
+	/* ⭐ TÍTULO DE BARRA LATERAL EN MÓVIL */
+	.sidebar-title {
+		display: block; 
+		color: #00e0ff; 
+		border-bottom: 3px solid #1a1a1a;
+		margin-top: 0;
+		margin-bottom: 10px;
+		padding-bottom: 5px;
+		font-size: 1.5em;
+	}
+	.article-list {
+		display: block;
+		padding: 0;
+	}
+	.article-item {
+		display: flex;
+		align-items: center;
+		margin-bottom: 10px;
+		padding: 10px;
+		background-color: #1a1a1a;
+		border: 1px solid #282828;
+		border-radius: 8px;
+		box-shadow: 0 2px 5px rgba(0,0,0,0.4);
+	}
+	.article-item:hover {
+		transform: none; 
+		box-shadow: 0 2px 5px rgba(0,0,0,0.4);
+		background-color: #1a1a1a;
+	}
+	.article-item .item-placeholder {
+		width: 60px;
+		height: 60px;
+		margin-right: 10px;
+	}
+
+	/* ======================================================= */
+	/* 4. ESTILOS DEL CARRUSEL REINTEGRADO (Generaciones) - ¡AJUSTADO PARA TEXTO ARRIBA, IMAGEN ABAJO! */
+	/* ======================================================= */
+	.carrusel-slides.featured-box-placeholder {
+		height: auto;
+		min-height: 400px; 
+		margin-top: 10px;
+		padding: 15px;
+		position: relative;
+		overflow: hidden;
+		background-color: #1a1a1a;
+		border: 1px solid #282828;
+		border-radius: 8px;
+		box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+		width: 100%; 
+		box-sizing: border-box;
+	}
+	
+	.carrusel-slides .slide {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		padding: 15px;
+		
+		flex-direction: column;
+		justify-content: flex-start;
+		align-items: center;
+		text-align: center;
+		box-sizing: border-box;
+		
+		opacity: 0;
+		visibility: hidden;
+		transition: opacity 0.4s ease-in-out, visibility 0.4s ease-in-out;
+	}
+	
+	.carrusel-slides .slide.actual {
+		position: relative;
+		opacity: 1;
+		visibility: visible;
+		display: flex;
+	}
+	
+	/* ⭐ Título y Subtítulo (Generación) - Se posicionan PRIMERO (order: 1) */
+	.carrusel-slides .slide h2,
+	.carrusel-slides .slide h3 {
+		order: 1; /* ¡Se posiciona primero! */
+		font-size: 1.4em; 
+		color: #00e0ff;
+		margin-top: 0; 
+		margin-bottom: 5px;
+		font-weight: 700;
+		line-height: 1.2;
+		width: 100%;
+		box-sizing: border-box;
+	}
+	
+	.carrusel-slides .slide-image {
+		order: 2; /* Se posiciona después del título/subtítulo */
+		width: 200px;
+		max-width: 280px;
+		height: auto;
+		max-height: 180px; 
+		margin: 0 auto 10px auto; 
+		object-fit: cover;
+		border: 2px solid #00e0ff;
+		border-radius: 6px;
+	}
+	
+	.carrusel-slides .slide-text1,
+	.carrusel-slides .slide-text2,
+	.carrusel-slides .slide-text3,
+	.carrusel-slides .slide-text4,
+	.carrusel-slides .slide-text {
+		order: 3; /* Se posiciona al final, después de la imagen */
+		width: 100%;
+		max-width: none;
+		padding: 0 10px;
+		text-align: center;
+		box-sizing: border-box;
+		flex-grow: 1;
+		overflow: hidden;
+	}
+
+	.carrusel-slides .slide-text p {
+		font-size: 0.8em;
+		line-height: 1.3;
+		margin: 5px 0;
+		word-wrap: break-word;
+		overflow-wrap: break-word;
+	}
+
+	.carrusel-paginacion .control-anterior,
+	.carrusel-paginacion .control-siguiente {
+		display: none;
+	}
+	
+	.carrusel-paginacion {
+		display: flex;
+		margin-bottom: 10px;
+	}
+	
+	/* 5. ESTILOS DEL WIDGET DE VIDEO REINTEGRADO */
+	.video-widget .video-placeholder {
+		height: 250px;
+		margin-top: 10px;
+		width: 100%; 
+		box-sizing: border-box;
+	}
+
+	/* ⭐ REORDENAMIENTO DE ELEMENTOS EN MÓVIL (usando 'order') */
+	.left-sidebar {
+		order: 1; /* Tendencias primero */
+	}
+	.video-widget {
+		order: 2; /* Video segundo, justo debajo de Tendencias */
+	}
+	.main-content-area {
+		order: 3; /* El artículo principal después del video */
+	}
+	.carrusel-contenedor {
+		order: 4; /* El carrusel después del artículo principal */
+	}
+	.right-sidebar {
+		order: 5; /* Otros widgets de la barra derecha al final */
+	}
+
+
+	/* ELIMINAR ANIMACIONES EN MÓVIL (para rendimiento) */
+	.animate-on-load,
+	.left-sidebar,
+	.right-sidebar,
+	.hero-article,
+	.carrusel-contenedor {
+		animation: none !important;
+		opacity: 1 !important;
+	}
+}
+
+/* ========================================= */
+/* ADAPTACIONES ESPECÍFICAS PARA MÓVILES (Media Query) */
+/* ========================================= */
+@media (max-width: 768px) {
+	
+	/* Contenedor del Overlay de Bienvenida */
+	#welcome-overlay {
+		width: 100%;
+		height: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		text-align: center;
+		flex-direction: column;
+	}
+
+	/* Estilo del Texto de Bienvenida */
+	.welcome-text {
+		font-size: 2.5rem;
+		padding: 20px;
+		max-width: 80vw;
+		animation: fadeInScale 2.5s ease-out forwards; 
+	}
+	
+	/* REGLA CLAVE AÑADIDA/MODIFICADA: */
+	/* El main-title de escritorio (el grande) DEBE OCULTARSE en móvil. */
+	.main-header .main-title { 
+		display: none; 
+	}
+
+	/* Ocultamos la barra superior vacía en móvil */
+	.header-top-bar {
+		display: none; 
+	}
+
+	/* Ajustes de la barra de navegación móvil */
+	.mobile-navbar {
+		padding: 5px 0;
+	}
+	.mobile-nav-item span {
+		font-size: 0.7rem;
+	}
+
+	/* Ocultamos el header completo de escritorio para que solo se vea el contenido móvil */
+	.main-header {
+		display: none; 
+	}
+	/* Aseguramos que el main-content-area tenga margen superior correcto */
+	.main-content-area {
+		margin-top: 0;
+	}
+}
+
+/* ========================================= */
+/* ESTILO DE ENLACES EN ARTÍCULOS DE SIDEBAR */
+/* ========================================= */
+.article-link {
+	text-decoration: none; 
+}
+
+.article-link h4 {
+	color: #00e0ff; 
+	cursor: pointer;
+	-webkit-tap-highlight-color: transparent; 
+	transition: color 0.3s ease-in-out;
+}
+
+.article-link:hover h4 {
+	color: #66ffff; 
+}
+
+.article-item:hover {
+	box-shadow: 0 6px 12px rgba(0, 0, 0, 0.7); 
+	transform: translateY(-3px); 
+	cursor: pointer;
+	background-color: #252525; 
+	border-radius: 8px; 
+}
+
+/* REGLA CLAVE PARA MÓVIL: Asegurar que el hover no sea intrusivo */
+@media (max-width: 900px) {
+	.article-item:hover {
+		transform: none; 
+		box-shadow: 0 2px 5px rgba(0,0,0,0.4);
+		background-color: #1a1a1a;
+	}
+
+
+
+
+
+}
